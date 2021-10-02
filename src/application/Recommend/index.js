@@ -1,5 +1,6 @@
 import React,{ useEffect } from 'react';
 import { connect } from 'react-redux';
+import { renderRoutes } from 'react-router-config';
 import * as actionTypes from './store/actionCreators';
 import Slider from '../../components/slider';
 import RecommendList from '../../components/list';
@@ -20,33 +21,31 @@ function Recommend(props) {
 
     // 只运行一次的 effect（仅在组件挂载和卸载时执行）
     useEffect (() => {
-        if (!bannerList.size) {
+        if (!bannerList.length) {
             getBannerDataDispatch();
         }
-        if (!recommendList.size) {
+        if (!recommendList.length) {
             getRecommendListDataDispatch();
         }
     }, []);
-
-    const bannerListJS = bannerList ? bannerList.toJS () : [];
-    const recommendListJS = recommendList ? recommendList.toJS () :[];
 
     return (
         <Content>
             <Scroll onScroll={forceCheck}>
                 <div>
-                    <Slider bannerList={bannerListJS}></Slider>
-                    <RecommendList recommendList={recommendListJS}></RecommendList>
+                    <Slider bannerList={bannerList}></Slider>
+                    <RecommendList recommendList={recommendList}></RecommendList>
                 </div>
             </Scroll>
-            { enterLoading ? <Loading></Loading> : null }
+            <Loading show={enterLoading}></Loading> 
+            { renderRoutes (props.route.routes) }
         </Content>
     )
 }
 
 const mapStateToProps = (state) => ({
-    bannerList: state.getIn(['recommend', 'bannerList']),
-    recommendList: state.getIn (['recommend', 'recommendList']),
+    bannerList: state.getIn(['recommend', 'bannerList']).toJS(),
+    recommendList: state.getIn (['recommend', 'recommendList']).toJS(),
     enterLoading: state.getIn (['recommend', 'enterLoading'])
 });
 
@@ -63,4 +62,4 @@ const mapDispatchToProps = (dispatch) => {
 
 
 //TODO 是否还需要使用memo进行包装？
-export default connect(mapStateToProps, mapDispatchToProps)(React.memo(Recommend));
+export default connect(mapStateToProps, mapDispatchToProps)(Recommend);

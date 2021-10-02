@@ -8,6 +8,7 @@ import { HashRouter } from 'react-router-dom';
 import { renderRoutes } from 'react-router-config';
 import routes from './routes/index.js';
 import store from './store';
+import { Data } from './application/Singers/data';
 
 function App() {
   return (
@@ -15,7 +16,9 @@ function App() {
       <HashRouter>
         <GlobalStyle></GlobalStyle>
         <IconStyle></IconStyle>
-        { renderRoutes(routes) }
+          <Data>
+            { renderRoutes(routes) }
+          </Data>
       </HashRouter>
     </Provider>
   );
