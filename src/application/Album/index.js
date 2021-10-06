@@ -10,9 +10,9 @@ import {
 import {
     CSSTransition
 } from 'react-transition-group';
-import  Header  from './../../baseUI/header/index';
+import  Header  from './../../base-ui/header/index';
 
-import Scroll from '../../baseUI/scroll';
+import Scroll from '../../base-ui/scroll';
 import {
     getName,
     getCount,
@@ -23,8 +23,9 @@ import {
     changeEnterLoading,
     getAlbumList
 } from './store/actionCreators';
-import Loading from '../../baseUI/loading/index';
-import SongsList from '../SongList';
+import Loading from '../../base-ui/loading/index';
+import MusicNote from '../../base-ui/music-note';
+import SongsList from '../song-list';
 
 export const HEADER_HEIGHT = 45;
 
@@ -44,6 +45,11 @@ function Album(props) {
     const [isMarquee, setIsMarquee] = useState(false);// 是否跑马灯
 
     const headerEl = useRef();
+    const musicNoteRef = useRef();
+
+    const musicAnimation = (x, y) => {
+        musicNoteRef.current.startAnimation({ x, y });
+    };
 
     // 将传给子组件的函数用 useCallback 包裹
     // 如果不用 useCallback 包裹，父组件每次执行时会生成不一样的 handleBack 和 handleScroll 函数引用，那么子组件每一次 memo 的结果都会不一样，导致不必要的重新渲染
@@ -139,12 +145,14 @@ function Album(props) {
                                 <SongsList
                                     songs={currentAlbum.tracks}
                                     showCollect={true}
+                                    musicAnimation={musicAnimation}
                                 ></SongsList>
                             </div>
                         </Scroll> :
                         null
                 }
                 <Loading show={ enterLoading }></Loading>
+                <MusicNote ref={musicNoteRef}></MusicNote>
             </Container>
         </CSSTransition>
     )

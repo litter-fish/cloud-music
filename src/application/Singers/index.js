@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import Horizen from '../../baseUI/horizen-item';
+import Horizen from '../../base-ui/horizen-item';
 import { categoryTypes, alphaTypes } from '../../api/config';
 import {
     NavContainer,
@@ -7,7 +7,7 @@ import {
     List,
     ListItem
 } from './style'
-import Scroll from '../../baseUI/scroll';
+import Scroll from '../../base-ui/scroll';
 import { connect } from 'react-redux';
 import { renderRoutes } from 'react-router-config';
 import {
@@ -19,9 +19,9 @@ import {
     refreshMoreSingerList,
     getSingerList
 } from './store/actionCreators';
-import { changeEnterLoading } from '../Recommend/store/actionCreators';
+import { changeEnterLoading } from '../recommend/store/actionCreators';
 import LazyLoad, { forceCheck } from 'react-lazyload';
-import Loading from '../../baseUI/loading';
+import Loading from '../../base-ui/loading';
 import { CategoryDataContext, CHANGE_CATEGORY, CHANGE_ALPHA } from './data';
 
 function Singers(props) {

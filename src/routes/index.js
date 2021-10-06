@@ -1,11 +1,12 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
-import Home from '../application/Home';
-import Recommend from '../application/Recommend';
-import Singers from '../application/Singers';
-import Rank from '../application/Rank';
-import Album from '../application/Album';
-import Singer from '../application/Singer';
+import Home from '../application/home';
+import Recommend from '../application/recommend';
+import Singers from '../application/singers';
+import Rank from '../application/rank';
+import Album from '../application/album';
+import Singer from '../application/singer';
+import Search from '../application/search';
 
 
 export default [{
@@ -48,6 +49,18 @@ export default [{
                     component: Album
                 }
             ]
-        }
+        },
+        {
+            path: "/album/:id",
+            exact: true,
+            key: "album",
+            component: Album
+        },
+        {
+            path: "/search",
+            exact: true,
+            key: "search",
+            component: Search
+        } 
     ]
 }]

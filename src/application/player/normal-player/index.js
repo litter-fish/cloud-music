@@ -16,9 +16,8 @@ import {
     CSSTransition
 } from 'react-transition-group';
 import animations from 'create-keyframe-animation';
-import ProgressBar from '../../../baseUI/progressBar';
+import ProgressBar from '../../../base-ui/progress-bar';
 import { playMode } from './../../../api/config';
-import Toast from '../../../baseUI/Toast';
 
 function NormalPlayer(props) {
     const {

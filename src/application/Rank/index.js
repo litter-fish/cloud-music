@@ -8,11 +8,11 @@ import {
     Container,
     SongList
 } from './style';
-import Scroll, { forceCheck } from '../../baseUI/scroll';
+import Scroll, { forceCheck } from '../../base-ui/scroll';
 // ????
 import { renderRoutes } from 'react-router-config';
-import { EnterLoading } from './../Singers/style';
-import Loading from '../../baseUI/loading';
+import { EnterLoading } from './../singers/style';
+import Loading from '../../base-ui/loading';
 
 function Rank(props) {
 

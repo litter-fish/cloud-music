@@ -9,8 +9,8 @@ import { Content } from './style';
 // 引入 forceCheck 方法
 import { forceCheck } from 'react-lazyload';
 
-import Scroll from '../../baseUI/scroll';
-import Loading from '../../baseUI/loading';
+import Scroll from '../../base-ui/scroll';
+import Loading from '../../base-ui/loading';
 
 function Recommend(props) {
 

@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import {
     CSSTransition
 } from 'react-transition-group';
-import  Header  from '../../baseUI/header/index';
+import  Header  from '../../base-ui/header/index';
 import { 
     Container,
     ImgWrapper,
@@ -11,14 +11,15 @@ import {
     BgLayer,
     SongListWrapper
 } from './style';
-import Scroll from '../../baseUI/scroll';
-import Loading from '../../baseUI/loading';
-import SongsList from '../SongList';
+import Scroll from '../../base-ui/scroll';
+import Loading from '../../base-ui/loading';
+import SongsList from '../song-list';
 import { HEADER_HEIGHT } from '../../api/config';
 import {
     changeEnterLoading,
     getSingerInfo
 } from './store/actionCreators';
+import MusicNote from '../../base-ui/music-note';
 
 function Singer(props) {
 
@@ -38,6 +39,12 @@ function Singer(props) {
 
     // 往上偏移的尺寸，露出圆角
     const OFFSET = 5;
+
+    const musicNoteRef = useRef();
+
+    const musicAnimation = (x, y) => {
+        musicNoteRef.current.startAnimation({ x, y });
+    };
 
     useEffect(() => {
         const id = props.match.params.id;
@@ -125,10 +132,12 @@ function Singer(props) {
                         <SongsList
                             songs={songsOfArtist}
                             showCollect={false}
+                            musicAnimation={musicAnimation}
                         ></SongsList>
                     </Scroll>
                 </SongListWrapper>
                 <Loading show={enterLoading}></Loading>
+                <MusicNote ref={musicNoteRef}></MusicNote>
             </Container>
         </CSSTransition>
 

@@ -6,7 +6,7 @@ import {
 import {
     CSSTransition
 } from 'react-transition-group';
-import ProgressCircle from '../../../baseUI/progressCircle';
+import ProgressCircle from '../../../base-ui/progress-circle';
 
 function MiniPlayer(props) {
     const { song, fullScreen, playing, percent } = props;

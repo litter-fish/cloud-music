@@ -8,7 +8,7 @@ import { HashRouter } from 'react-router-dom';
 import { renderRoutes } from 'react-router-config';
 import routes from './routes/index.js';
 import store from './store';
-import { Data } from './application/Singers/data';
+import { Data } from './application/singers/data';
 
 function App() {
   return (

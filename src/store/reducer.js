@@ -1,10 +1,11 @@
 import { combineReducers } from 'redux-immutable';
-import { reducer as recommendReducer } from '../application/Recommend/store/index';
-import { reducer as singersReducer } from '../application/Singers/store/index';
-import { reducer as rankReducer } from '../application/Rank/store/index';
-import { reducer as albumReducer } from '../application/Album/store/index';
-import { reducer as singerReducer } from '../application/Singer/store/index';
-import { reducer as playerReducer } from '../application/Player/store/index';
+import { reducer as recommendReducer } from '../application/recommend/store/index';
+import { reducer as singersReducer } from '../application/singers/store/index';
+import { reducer as rankReducer } from '../application/rank/store/index';
+import { reducer as albumReducer } from '../application/album/store/index';
+import { reducer as singerReducer } from '../application/singer/store/index';
+import { reducer as playerReducer } from '../application/player/store/index';
+import { reducer as searchReducer } from '../application/search/store/index';
 
 export default combineReducers({
     // 之后开发具体功能模块的时候添加reducer
@@ -13,5 +14,6 @@ export default combineReducers({
     ranks: rankReducer,
     album: albumReducer,
     singer: singerReducer,
-    player: playerReducer
+    player: playerReducer,
+    search: searchReducer
 });

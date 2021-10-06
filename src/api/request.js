@@ -1,11 +1,11 @@
 import { axiosInstance } from "./config";
 
 export const getBannerRequest = () => {
-    return axiosInstance.get ('/banner');
+    return axiosInstance.get('/banner');
 }
 
 export const getRecommendListRequest = () => {
-    return axiosInstance.get ('/personalized');
+    return axiosInstance.get('/personalized');
 }
 
 export const getHotSingerListRequest = (count) => {
@@ -21,13 +21,29 @@ export const getRankListRequest = () => {
 }
 
 export const getAlbumDetailRequest = (id) => {
-    return axiosInstance.get (`/playlist/detail?id=${id}`);
+    return axiosInstance.get(`/playlist/detail?id=${id}`);
 }
 
 export const getSingerInfoRequest = id => {
-    return axiosInstance.get (`/artists?id=${id}`);
+    return axiosInstance.get(`/artists?id=${id}`);
 };
 
 export const getSongUrl = id => {
     return `https://music.163.com/song/media/outer/url?id=${id}.mp3`;
 }
+
+export const getHotKeyWordsRequest = () => {
+    return axiosInstance.get(`/search/hot`);
+};
+
+export const getSuggestListRequest = query => {
+    return axiosInstance.get(`/search/suggest?keywords=${query}`);
+};
+
+export const getResultSongsListRequest = query => {
+    return axiosInstance.get(`/search?keywords=${query}`);
+};
+
+export const getSongDetailRequest = id => {
+    return axiosInstance.get(`/song/detail?ids=${id}`);
+};

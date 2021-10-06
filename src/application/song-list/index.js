@@ -9,14 +9,30 @@ import {
     getCount,
     isEmptyObject
 } from '../../api/utils';
+import {
+    changePlayList,
+    changeCurrentIndex,
+    changeSequencePlayList
+} from '../player/store/actionCreators';
 
 const SongsList = React.forwardRef((props, refs) => {
 
-    const { collectCount, showCollect, songs } = props;
+    const { collectCount, showCollect, songs, musicAnimation } = props;
+
+    const {
+        changePlayListDispatch,
+        changeCurrentIndexDispatch,
+        changeSequencePlayListDispatch
+    } = props;
 
     const totalCount = songs.length;
 
-    const selectItem = () => {}
+    const selectItem = (e, index) => {
+        changePlayListDispatch(songs);
+        changeSequencePlayListDispatch(songs);
+        changeCurrentIndexDispatch(index);
+        musicAnimation(e.nativeEvent.clientX, e.nativeEvent.clientY);
+    }
 
     const songList = (list) => {
         return list.map((item, index) => {
@@ -58,4 +74,18 @@ const SongsList = React.forwardRef((props, refs) => {
     )
 });
 
-export default React.memo(SongsList)
+const mapDispatchToProps = (dispatch) => {
+    return {
+        changePlayListDispatch(data) {
+            dispatch(changePlayList(data));
+        },
+        changeCurrentIndexDispatch(data) {
+            dispatch(changeCurrentIndex(data));
+        },
+        changeSequencePlayListDispatch(data) {
+            dispatch(changeSequencePlayList(data));
+        }
+    }
+}
+
+export default connect(null, mapDispatchToProps)(SongsList)

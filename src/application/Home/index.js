@@ -3,7 +3,7 @@ import React from 'react';
 import { renderRoutes } from 'react-router-config';
 import { NavLink } from 'react-router-dom';
 
-import Player from '../Player';
+import Player from '../player';
 
 import { Top, Tab, TabItem } from './style';
 
@@ -13,8 +13,8 @@ function Home(props) {
         <div>
            <Top>
                <span className="iconfont menu">&#xe65c;</span>
-               <span className="title">WebApp</span>
-               <span className="iconfont search"></span>
+               <span className="title">Cloud Music</span>
+               <span className="iconfont search" onClick={() => props.history.push ('/search')}>&#xe62b;</span>
             </Top>
             <Tab>
                 <NavLink to="/recommend" activeClassName="selected">
