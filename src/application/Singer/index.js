@@ -108,7 +108,7 @@ function Singer(props) {
         <CSSTransition
             in={showStatus}
             timeout={300}
-            classNames="fly"
+            classNames='fly'
             appear={true}
             unmountOnExit
             onExited={props.history.goBack}
@@ -116,15 +116,15 @@ function Singer(props) {
             <Container>
                 <Header
                     ref={header}
-                    title={"头部"}
+                    title={'头部'}
                     handleClick={handleBack}
                 ></Header>
                 <ImgWrapper ref={imageWrapper} bgUrl={artist.picUrl}>
-                    <div className="filter"></div>
+                    <div className='filter'></div>
                 </ImgWrapper>
                 <CollectButton ref={collectButton}>
-                    <i className="iconfont">&#xe62d;</i>
-                    <span className="text"> 收藏 </span>
+                    <i className='iconfont'>&#xe62d;</i>
+                    <span className='text'> 收藏 </span>
                 </CollectButton>
                 <BgLayer ref={layer}></BgLayer>
                 <SongListWrapper ref={songScrollWrapper}>

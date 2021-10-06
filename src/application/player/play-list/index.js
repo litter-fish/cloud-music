@@ -7,7 +7,7 @@ import {
 function PlayList(props) {
     return (
         <PlayListWrapper>
-            <div className="list_wrapper">
+            <div className='list_wrapper'>
                 <ScrollWrapper></ScrollWrapper>
             </div>
         </PlayListWrapper>

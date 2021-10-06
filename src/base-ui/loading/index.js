@@ -24,7 +24,7 @@ const LoadingWrapper = styled.div`
         height: 60px;
         opacity: 0.6;
         border-radius: 50%;
-        background-color: ${style["theme-color"]};
+        background-color: ${style['theme-color']};
         animation: ${loading} 1.4s infinite ease-in;
     }
     >div:nth-child(2) {
@@ -35,7 +35,7 @@ const LoadingWrapper = styled.div`
 function Loading(props) {
     const { show } = props;
     return (
-        <LoadingWrapper style={show ? {display: ""}: {display: "none"}}>
+        <LoadingWrapper style={show ? {display: ''}: {display: 'none'}}>
             <div></div>
             <div></div>
         </LoadingWrapper>

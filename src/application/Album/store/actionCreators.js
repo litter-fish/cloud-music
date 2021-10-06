@@ -26,7 +26,7 @@ export const getAlbumList = (id) => {
             dispatch(changeCurrentAlbum(data));
             dispatch(changeEnterLoading(false));
         }).catch(() => {
-            console.log("获取 album 数据失败！")
+            console.log('获取 album 数据失败！')
         })
     }
 }

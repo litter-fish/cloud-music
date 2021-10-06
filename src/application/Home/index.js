@@ -12,18 +12,18 @@ function Home(props) {
     return (
         <div>
            <Top>
-               <span className="iconfont menu">&#xe65c;</span>
-               <span className="title">Cloud Music</span>
-               <span className="iconfont search" onClick={() => props.history.push ('/search')}>&#xe62b;</span>
+               <span className='iconfont menu'>&#xe65c;</span>
+               <span className='title'>Cloud Music</span>
+               <span className='iconfont search' onClick={() => props.history.push ('/search')}>&#xe62b;</span>
             </Top>
             <Tab>
-                <NavLink to="/recommend" activeClassName="selected">
+                <NavLink to='/recommend' activeClassName='selected'>
                     <TabItem><span> 推荐 </span></TabItem>
                 </NavLink>
-                <NavLink to="/singers" activeClassName="selected">
+                <NavLink to='/singers' activeClassName='selected'>
                     <TabItem><span> 歌手 </span></TabItem>
                 </NavLink>
-                <NavLink to="/rank" activeClassName="selected">
+                <NavLink to='/rank' activeClassName='selected'>
                     <TabItem><span> 排行榜 </span></TabItem>
                 </NavLink>
             </Tab>

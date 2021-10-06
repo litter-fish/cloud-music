@@ -1,4 +1,4 @@
-import { fromJS } from "immutable";
+import { fromJS } from 'immutable';
 import * as actionTypes from './constants';
 
 const defaultState = fromJS({

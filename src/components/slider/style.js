@@ -14,7 +14,7 @@ export const SliderContainer = styled.div`
         top: 0px;
         height: 60%;
         width: 100%;
-        background: ${style ["theme-color"]};
+        background: ${style['theme-color']};
     }
     .slider-container {
         position: relative;
@@ -30,7 +30,7 @@ export const SliderContainer = styled.div`
             height: 100%;
         }
         .swiper-pagination-bullet-active {
-            background: ${style ["theme-color"]};
+            background: ${style['theme-color']};
         }
     }
 `;

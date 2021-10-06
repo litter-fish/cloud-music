@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { 
     NormalPlayerContainer,
     Top,
@@ -6,7 +6,9 @@ import {
     Bottom,
     CDWrapper,
     Operators,
-    ProgressWrapper
+    ProgressWrapper,
+    LyricContainer,
+    LyricWrapper
 } from './style';
 import {
     getName,
@@ -18,6 +20,7 @@ import {
 import animations from 'create-keyframe-animation';
 import ProgressBar from '../../../base-ui/progress-bar';
 import { playMode } from './../../../api/config';
+import Scroll from '../../../base-ui/scroll';
 
 function NormalPlayer(props) {
     const {
@@ -36,9 +39,31 @@ function NormalPlayer(props) {
         handlePrev,
         handleNext
     } = props;
+
+    const {
+        currentLineNum,
+        currentPlayingLyric,
+        currentLyric
+    } = props;
+
     const normalPlayerRef = useRef();
     const cdWrapperRef = useRef();
+    const currentState = useRef('');
+    const lyricScrollRef = useRef();
+    const lyricLineRefs = useRef([]);
 
+    useEffect(() => {
+        if (!lyricScrollRef.current) return;
+        let bScroll = lyricScrollRef.current.getBScroll();
+        if (currentLineNum > 5) {
+            // 保持当前歌词在第5条的位置
+            let lineEl = lyricLineRefs.current[currentLineNum - 5].current;
+            bScroll.scrollToElement(lineEl, 1000);
+        } else {
+            // 当前歌词行数<=5, 直接滚动到最顶端
+            bScroll.scrollTo(0, 0, 1000);
+        }
+    }, [currentLineNum]);
 
     const enter = () => {
         normalPlayerRef.current.style.display = 'block';
@@ -106,18 +131,26 @@ function NormalPlayer(props) {
     const getPlayMode = () => {
         let content;
         if (mode === playMode.sequence) {
-            content = "&#xe625;";
+            content = '&#xe625;';
         } else if (mode === playMode.loop) {
-            content = "&#xe653;";
+            content = '&#xe653;';
         } else {
-            content = "&#xe61b;";
+            content = '&#xe61b;';
         }
         return content;
     }
 
+    const toggleCurrentState = () => {
+        if (currentState.current !== 'lyric') {
+            currentState.current = 'lyric';
+        } else {
+            currentState.current = '';
+        }
+    };
+
     return (
         <CSSTransition
-            classNames="normal"
+            classNames='normal'
             in={fullScreen}
             timeout={400}
             mountOnEnter
@@ -127,68 +160,104 @@ function NormalPlayer(props) {
             onExited={afterLeave}
         >
             <NormalPlayerContainer ref={normalPlayerRef}>
-                <div className="background">
+                <div className='background'>
                     <img
-                        src={song.al.picUrl + "?param=300x300"}
-                        width="100%"
-                        height="100%"
-                        alt="歌曲图片"
+                        src={song.al.picUrl + '?param=300x300'}
+                        width='100%'
+                        height='100%'
+                        alt='歌曲图片'
                         />
                 </div>
-                <div className="background layer"></div>
-                <Top className="top">
-                    <div className="back" onClick={() => toggleFullScreen(false)}>
-                        <i className="iconfont">&#xe662;</i>
+                <div className='background layer'></div>
+                <Top className='top'>
+                    <div className='back' onClick={() => toggleFullScreen(false)}>
+                        <i className='iconfont'>&#xe662;</i>
                     </div>
-                    <h1 className="title">{song.name}</h1>
-                    <h1 className="subtitle">{getName(song.ar)}</h1>
+                    <h1 className='title'>{song.name}</h1>
+                    <h1 className='subtitle'>{getName(song.ar)}</h1>
                 </Top>
-                <Middle>
-                    <CDWrapper ref={cdWrapperRef}>
-                        <div className="cd">
-                            <img
-                                className={`image play ${playing ? "" : "pause"}`}
-                                src={song.al.picUrl + "?param=400x400"}
-                                alt=""
-                                />
-                        </div>
-                    </CDWrapper>
+                <Middle ref={cdWrapperRef} onClick={toggleCurrentState}>
+                    <CSSTransition
+                        timeout={400}
+                        classNames='fade'
+                        in={currentState.current !== 'lyric'}
+                    >
+                        <CDWrapper style={{visibility: currentState.current !== 'lyric' ? 'visible' : 'hidden'}}>
+                            <div className='cd'>
+                                <img
+                                    className={`image play ${playing ? '' : 'pause'}`}
+                                    src={song.al.picUrl + '?param=400x400'}
+                                    alt=''
+                                    />
+                            </div>
+                            <p className='playing_lyric'>{currentPlayingLyric}</p>
+                        </CDWrapper>
+                    </CSSTransition>
+                    <CSSTransition
+                        timeout={400}
+                        classNames='fade'
+                        in={currentState.current === 'lyric'}
+                    >
+                        <LyricContainer>
+                            <Scroll ref={lyricScrollRef}>
+                                <LyricWrapper
+                                    style={{visibility: currentState.current === 'lyric' ? 'visible' : 'hidden'}}
+                                    className='lyric_wrapper'
+                                >
+                                    {
+                                        currentLyric ? currentLyric.lines.map((item, index) => {
+                                            lyricLineRefs.current[index] = React.createRef();
+                                            return (
+                                                <p
+                                                    className={`text ${currentLineNum === index ? 'current' : ''}`}
+                                                    key={item + index}
+                                                    ref={lyricLineRefs.current[index]}
+                                                >
+                                                    {item.txt}
+                                                </p>
+                                            )
+                                        }) : <p className='text pure'> 纯音乐，请欣赏。</p>
+                                    }
+                                </LyricWrapper>
+                            </Scroll>
+                        </LyricContainer>
+                    </CSSTransition>
                 </Middle>
-                <Bottom className="bottom">
+                <Bottom className='bottom'>
                     <ProgressWrapper>
-                        <span className="time time-l">{formatPlayTime(currentTime)}</span>
-                        <div className="progress-bar-wrapper">
+                        <span className='time time-l'>{formatPlayTime(currentTime)}</span>
+                        <div className='progress-bar-wrapper'>
                             <ProgressBar 
                                 percent={percent}
                                 percentChange={onProgressChange}
                             ></ProgressBar>
                         </div>
-                        <div className="time time-r">{formatPlayTime(duration)}</div>
+                        <div className='time time-r'>{formatPlayTime(duration)}</div>
                     </ProgressWrapper>
                     <Operators>
-                        <div className="icon i-left">
+                        <div className='icon i-left'>
                             <i
-                                className="iconfont"
+                                className='iconfont'
                                 dangerouslySetInnerHTML={{ __html: getPlayMode() }}
                             ></i>
                         </div>
-                        <div className="icon i-left" onClick={handlePrev}>
-                            <i className="iconfont">&#xe6e1;</i>
+                        <div className='icon i-left' onClick={handlePrev}>
+                            <i className='iconfont'>&#xe6e1;</i>
                         </div>
-                        <div className="icon i-center">
+                        <div className='icon i-center'>
                             <i 
-                                className="iconfont"
+                                className='iconfont'
                                 onClick={e => clickPlaying(e, !playing)}
                                 dangerouslySetInnerHTML={{
-                                    __html: playing ? "&#xe723;" : "&#xe731;"
+                                    __html: playing ? '&#xe723;' : '&#xe731;'
                                 }}
                             ></i>
                         </div>
-                        <div className="icon i-right" onClick={handleNext}>
-                            <i className="iconfont">&#xe718;</i>
+                        <div className='icon i-right' onClick={handleNext}>
+                            <i className='iconfont'>&#xe718;</i>
                         </div>
-                        <div className="icon i-right">
-                            <i className="iconfont">&#xe640;</i>
+                        <div className='icon i-right'>
+                            <i className='iconfont'>&#xe640;</i>
                         </div>
                     </Operators>
                 </Bottom>

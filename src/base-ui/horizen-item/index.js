@@ -26,8 +26,8 @@ const ListItem = styled.span`
     padding: 5px 8px;
     border-radius: 10px;
     &.selected {
-        color: ${style["theme-color"]};
-        border: 1px solid ${style["theme-color"]};
+        color: ${style['theme-color']};
+        border: 1px solid ${style['theme-color']};
         opacity: 0.8;
     }
 `;

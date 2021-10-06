@@ -84,7 +84,7 @@ function Search(props) {
                 {
                     hotList.map(item => {
                         return (
-                            <li className="item" key={item.first} onClick={() => setQuery(item.first)}>
+                            <li className='item' key={item.first} onClick={() => setQuery(item.first)}>
                                 <span>{item.first}</span>
                             </li>
                         );
@@ -99,17 +99,17 @@ function Search(props) {
         if (!singlers || !singlers.length) return;
         return (
             <List>
-                <h1 className="title"> 相关歌手 </h1>
+                <h1 className='title'> 相关歌手 </h1>
                 {
                     singlers.map((item, index) => {
                         return (
-                            <ListItem key={item.accountId + "" + index} onClick={() => props.history.push(`/singers/${item.id}`)}>
-                                <div className="img_wrapper">
-                                    <LazyLoad placeholder={<img width="100%" height="100%" src={require('./music.png')} alt="music"/>}>
-                                        <img src={item.picUrl} width="100%" height="100%" alt="music"/>
+                            <ListItem key={item.accountId + '' + index} onClick={() => props.history.push(`/singers/${item.id}`)}>
+                                <div className='img_wrapper'>
+                                    <LazyLoad placeholder={<img width='100%' height='100%' src={require('./music.png')} alt='music'/>}>
+                                        <img src={item.picUrl} width='100%' height='100%' alt='music'/>
                                     </LazyLoad>
                                 </div>
-                                <span className="name"> 歌单: {item.name}</span>
+                                <span className='name'> 歌手: {item.name}</span>
                             </ListItem>
                         )
                     })
@@ -122,17 +122,17 @@ function Search(props) {
         if (!albums || !albums.length) return;
         return (
             <List>
-                <h1 className="title"> 相关歌单 </h1>
+                <h1 className='title'> 相关歌单 </h1>
                 {
                     albums.map(({artist}, index) => {
                         return (
-                            <ListItem key={artist.id + "" + index} onClick={() => props.history.push(`/album/${artist.id}`)}>
-                                <div className="img_wrapper">
-                                    <LazyLoad placeholder={<img width="100%" height="100%" src={require('./music.png')} alt="music"/>}>
-                                        <img src={artist.picUrl} width="100%" height="100%" alt="music"/>
+                            <ListItem key={artist.id + '' + index} onClick={() => props.history.push(`/album/${artist.id}`)}>
+                                <div className='img_wrapper'>
+                                    <LazyLoad placeholder={<img width='100%' height='100%' src={require('./music.png')} alt='music'/>}>
+                                        <img src={artist.picUrl} width='100%' height='100%' alt='music'/>
                                     </LazyLoad>
                                 </div>
-                                <span className="name"> 歌单: {artist.name}</span>
+                                <span className='name'> 歌单: {artist.name}</span>
                             </ListItem>
                         )
                     })
@@ -142,12 +142,12 @@ function Search(props) {
     };
     const renderSongs = () => {
         return (
-            <SongItem style={{paddingLeft: "20px"}}>
+            <SongItem style={{paddingLeft: '20px'}}>
                 {
                     songsList.map(item => {
                         return (
                             <li key={item.id} onClick={(e) => selectItem(e, item.id)}>
-                                <div className="info">
+                                <div className='info'>
                                     <span>{item.name}</span>
                                     <span>
                                         { getName(item.artists) } - { item.album.name }
@@ -166,19 +166,19 @@ function Search(props) {
             in={show}
             timeout={300}
             appear={true}
-            classNames="fly"
+            classNames='fly'
             unmountOnExit
             onExited={() => props.history.goBack()}
         >
             <Container>
-                <div className="search_box_wrapper">    
+                <div className='search_box_wrapper'>    
                     <SearchBox back={searchBack} newQuery={query} handleQuery={handleQuery}></SearchBox>
                 </div>
                 <ShortcutWrapper show={!query}>
                     <Scroll>
                         <div>
                             <HotKey>
-                                <h1 className="title"> 热门搜索 </h1>
+                                <h1 className='title'> 热门搜索 </h1>
                                 {renderHotKey()}
                             </HotKey>
                         </div>

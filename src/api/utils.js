@@ -5,9 +5,9 @@ export const getCount = (count) => {
     if (count < 10000) {
         return count;
     } else if (Math.floor(count / 10000) < 10000) {
-        return Math.floor(count / 1000) / 10 + "万";
+        return Math.floor(count / 1000) / 10 + '万';
     } else {
-        return Math.floor(count / 10000000) / 10 + "亿";
+        return Math.floor(count / 10000000) / 10 + '亿';
     }
 }
 
@@ -40,9 +40,9 @@ export const filterIdx = name => {
 };
 // 处理歌手列表拼接歌手名字
 export const getName = list => {
-    let str = "";
+    let str = '';
     list.map((item, index) => {
-        str += index === 0 ? item.name : "/" + item.name;
+        str += index === 0 ? item.name : '/' + item.name;
         return item;
     });
     return str;
@@ -55,7 +55,7 @@ export const isEmptyObject = obj => !obj || !Object.keys(obj).length;
 export const formatPlayTime = interval => {
     interval = interval | 0;// |0表示向下取整
     const minute = (interval / 60) | 0;
-    const second = (interval % 60).toString().padStart(2, "0");
+    const second = (interval % 60).toString().padStart(2, '0');
     return `${minute}:${second}`;
 };
 

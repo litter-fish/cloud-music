@@ -97,15 +97,15 @@ function ProgressBar(props) {
 
     return (
         <ProgressBarWrapper>
-            <div className="bar-inner" ref={progressBar} onClick={progressClick}>
-                <div className="progress" ref={progress}></div>
-                <div className="progress-btn-wrapper"
+            <div className='bar-inner' ref={progressBar} onClick={progressClick}>
+                <div className='progress' ref={progress}></div>
+                <div className='progress-btn-wrapper'
                     ref={progressBtn}
                     onTouchStart={progressTouchStart}
                     onTouchMove={progressTouchMove}
                     onTouchEnd={progressTouchEnd}
                 >
-                    <div className="progress-btn"></div>
+                    <div className='progress-btn'></div>
                 </div>
             </div>
         </ProgressBarWrapper>

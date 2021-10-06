@@ -17,35 +17,35 @@ function MiniPlayer(props) {
         <CSSTransition 
             in={!fullScreen} 
             timeout={400} 
-            classNames="mini" 
+            classNames='mini' 
             onEnter={() => {
-                miniPlayerRef.current.style.display = "flex";
+                miniPlayerRef.current.style.display = 'flex';
             }}
             onExited={() => {
-                miniPlayerRef.current.style.display = "none";
+                miniPlayerRef.current.style.display = 'none';
             }}
         >
             <MiniPlayerContainer ref={miniPlayerRef} onClick={() => toggleFullScreen(true)}>
-                <div className="icon">
-                    <div className="imgWrapper">
-                        <img className={`play ${playing ? "": "pause"}`} src={song.al.picUrl} width="40" height="40" alt="img"/>
+                <div className='icon'>
+                    <div className='imgWrapper'>
+                        <img className={`play ${playing ? '': 'pause'}`} src={song.al.picUrl} width='40' height='40' alt='img'/>
                     </div>
                 </div>
-                <div className="text">
-                    <h2 className="name">{song.name}</h2>
-                    <p className="desc">{getName(song.ar)}</p>
+                <div className='text'>
+                    <h2 className='name'>{song.name}</h2>
+                    <p className='desc'>{getName(song.ar)}</p>
                 </div>
-                <div className="control">
+                <div className='control'>
                     <ProgressCircle radius={32} percent={percent}>
                     { playing ? 
-                        <i className="icon-mini iconfont icon-pause" onClick={e => clickPlaying(e, false)}>&#xe650;</i>
+                        <i className='icon-mini iconfont icon-pause' onClick={e => clickPlaying(e, false)}>&#xe650;</i>
                         :
-                        <i className="icon-mini iconfont icon-play" onClick={e => clickPlaying(e, true)}>&#xe61e;</i> 
+                        <i className='icon-mini iconfont icon-play' onClick={e => clickPlaying(e, true)}>&#xe61e;</i> 
                     }
                     </ProgressCircle>
                 </div>
-                <div className="control">
-                    <i className="iconfont">&#xe640;</i>
+                <div className='control'>
+                    <i className='iconfont'>&#xe640;</i>
                 </div>
             </MiniPlayerContainer>
         </CSSTransition>

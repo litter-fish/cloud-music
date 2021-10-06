@@ -84,12 +84,12 @@ function Singers(props) {
                     singerList.map((item, index) => {
                         return (
                             <ListItem key={item.accountId + '' + index} onClick={() => enterDetail(item.id)}>
-                                <div className="img_warpper">
-                                    <LazyLoad placeholder={<img width="100%" height="100%" src={require ('./singer.png')} alt="music" />}>
-                                        <img src={`${item.picUrl}?param=300x300`} width="100%" height="100%" alt="music"/>
+                                <div className='img_warpper'>
+                                    <LazyLoad placeholder={<img width='100%' height='100%' src={require ('./singer.png')} alt='music' />}>
+                                        <img src={`${item.picUrl}?param=300x300`} width='100%' height='100%' alt='music'/>
                                     </LazyLoad>
                                 </div>
-                                <span className="name">{item.name}</span>
+                                <span className='name'>{item.name}</span>
                             </ListItem>
                         );
                     })
@@ -103,13 +103,13 @@ function Singers(props) {
             <NavContainer>
                 <Horizen
                     list={categoryTypes}
-                    title={"分类 (默认热门):"}
+                    title={'分类 (默认热门):'}
                     handleClick={(val) => handleUpdateCatetory(val)}
                     oldVal={category}
                     ></Horizen>
                 <Horizen
                     list={alphaTypes}
-                    title={"首字母:"}
+                    title={'首字母:'}
                     handleClick={(val) => handleUpdateAlpha(val)}
                     oldVal={alpha}
                     ></Horizen>

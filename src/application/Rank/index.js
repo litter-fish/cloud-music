@@ -39,10 +39,10 @@ function Rank(props) {
                     list.map(item => {
                         return (
                             <ListItem key={item.coverImgId} tracks={item.tracks} onClick={() => enterDetail(item)}>
-                                <div className="img_wrapper">
-                                    <img src={item.coverImgUrl} alt=""></img>
-                                    <div className="decorate"></div>
-                                    <span className="update_frequecy">{item.updateFrequecy}</span>
+                                <div className='img_wrapper'>
+                                    <img src={item.coverImgUrl} alt=''></img>
+                                    <div className='decorate'></div>
+                                    <span className='update_frequecy'>{item.updateFrequecy}</span>
                                 </div>
                                 { renderSongList(item.tracks)  }
                             </ListItem>
@@ -65,14 +65,14 @@ function Rank(props) {
             ) : null;
     }
 
-    let displayStyle = loading ? {"display":"none"} :  {"display": ""};
+    let displayStyle = loading ? {'display':'none'} :  {'display': ''};
     return (
         <Container>
             <Scroll>
                 <div>
-                    <h1 className="offical" style={displayStyle}> 官方榜 </h1>
+                    <h1 className='offical' style={displayStyle}> 官方榜 </h1>
                     { renderRankList(officialList) }
-                    <h1 className="global" style={displayStyle}> 全球榜 </h1>
+                    <h1 className='global' style={displayStyle}> 全球榜 </h1>
                     { renderRankList(globalList, true) }
                     { loading ? <EnterLoading><Loading></Loading></EnterLoading> : null }
                 </div>

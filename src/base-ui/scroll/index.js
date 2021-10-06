@@ -145,8 +145,8 @@ const Scroll = forwardRef((props, ref) => {
         }
     }));
 
-    const PullUpdisplayStyle = pullUpLoading ? { display: "" } : { display: "none" };
-    const PullDowndisplayStyle = pullDownLoading ? { display: "" } : { display: "none" };
+    const PullUpdisplayStyle = pullUpLoading ? { display: '' } : { display: 'none' };
+    const PullDowndisplayStyle = pullDownLoading ? { display: '' } : { display: 'none' };
 
     return (
         <ScrollContainer ref={scrollContainerRef}>
@@ -160,7 +160,7 @@ const Scroll = forwardRef((props, ref) => {
 });
 
 Scroll.defaultProps = {
-    direction: "vertical",
+    direction: 'vertical',
     click: true,
     refresh: true,
     onScroll:null,

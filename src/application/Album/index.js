@@ -14,11 +14,9 @@ import  Header  from './../../base-ui/header/index';
 
 import Scroll from '../../base-ui/scroll';
 import {
-    getName,
-    getCount,
     isEmptyObject
 } from '../../api/utils';
-import style from "../../assets/global-style";
+import style from '../../assets/global-style';
 import { 
     changeEnterLoading,
     getAlbumList
@@ -41,7 +39,7 @@ function Album(props) {
     }, [getAlbumDataDispatch, id]);
 
     const [showStatus, setShowStatus] = useState(true);
-    const [title, setTitle] = useState("歌单");
+    const [title, setTitle] = useState('歌单');
     const [isMarquee, setIsMarquee] = useState(false);// 是否跑马灯
 
     const headerEl = useRef();
@@ -59,14 +57,14 @@ function Album(props) {
         let headerDom = headerEl.current;
         // 滑过顶部的高度开始变化
         if (pos.y < minScrollY) {
-            headerDom.style.backgroundColor = style["theme-color"];
+            headerDom.style.backgroundColor = style['theme-color'];
             headerDom.style.opacity = Math.min(1, (percent - 1) / 2);
             setTitle(currentAlbum.name);
             setIsMarquee(true);
         } else {
-            headerDom.style.backgroundColor = "";
+            headerDom.style.backgroundColor = '';
             headerDom.style.opacity = 1;
-            setTitle("歌单");
+            setTitle('歌单');
             setIsMarquee(false);
         }
     }, [currentAlbum]);
@@ -78,24 +76,24 @@ function Album(props) {
     const renderTopDesc = () => {
         return (
             <TopDesc background={currentAlbum.coverImgUrl}>
-                <div className="background">
-                    <div className="filter"></div>
+                <div className='background'>
+                    <div className='filter'></div>
                 </div>
-                <div className="img_wrapper">
-                    <div className="decorate"></div>
-                    <img src={`${currentAlbum.coverImgUrl}?param=120x120`} alt=""/>
-                    <div className="play_count">
-                        <i className="iconfont play">&#xe885;</i>
-                        <span className="count">{Math.floor (currentAlbum.subscribedCount/1000)/10} 万 </span>
+                <div className='img_wrapper'>
+                    <div className='decorate'></div>
+                    <img src={`${currentAlbum.coverImgUrl}?param=120x120`} alt=''/>
+                    <div className='play_count'>
+                        <i className='iconfont play'>&#xe885;</i>
+                        <span className='count'>{Math.floor (currentAlbum.subscribedCount/1000)/10} 万 </span>
                     </div>
                 </div>
-                <div className="desc_wrapper">
-                    <div className="title">{currentAlbum.name}</div>
-                    <div className="person">
-                        <div className="avatar">
-                            <img src={currentAlbum.creator.avatarUrl} alt=""/>
+                <div className='desc_wrapper'>
+                    <div className='title'>{currentAlbum.name}</div>
+                    <div className='person'>
+                        <div className='avatar'>
+                            <img src={currentAlbum.creator.avatarUrl} alt=''/>
                         </div>
-                        <div className="name">{currentAlbum.creator.nickname}</div>
+                        <div className='name'>{currentAlbum.creator.nickname}</div>
                     </div>
                 </div>
             </TopDesc>
@@ -106,19 +104,19 @@ function Album(props) {
         return (
             <Menu>
                 <div>
-                    <i className="iconfont">&#xe6ad;</i>
+                    <i className='iconfont'>&#xe6ad;</i>
                     评论
                 </div>
                 <div>
-                    <i className="iconfont">&#xe86f;</i>
+                    <i className='iconfont'>&#xe86f;</i>
                     点赞
                 </div>
                 <div>
-                    <i className="iconfont">&#xe62d;</i>
+                    <i className='iconfont'>&#xe62d;</i>
                     收藏
                 </div>
                 <div>
-                    <i className="iconfont">&#xe606;</i>
+                    <i className='iconfont'>&#xe606;</i>
                     更多
                 </div>
             </Menu>
@@ -129,7 +127,7 @@ function Album(props) {
         <CSSTransition
             in={showStatus}
             timeout={300}
-            classNames="fly"
+            classNames='fly'
             appear={true}
             unmountOnExit
             onExited={props.history.goBack}

@@ -27,7 +27,7 @@ const ToastWrapper = styled.div`
         line-height: 50px;
         text-align: center;
         color: #fff;
-        font-size: ${style["font-size-l"]};
+        font-size: ${style['font-size-l']};
     }
 `;
 
@@ -45,9 +45,9 @@ const Toast = forwardRef((props, ref) => {
         }
     }));
     return (
-        <CSSTransition in={show} timeout={300} classNames="drop" unmountOnExit>
+        <CSSTransition in={show} timeout={300} classNames='drop' unmountOnExit>
             <ToastWrapper>
-                <div className="text">{text}</div>
+                <div className='text'>{text}</div>
             </ToastWrapper>
         </CSSTransition>
     )

@@ -22,7 +22,7 @@ export const getBannerList = () => {
         getBannerRequest().then(data => {
             dispatch(changeBannerList(data.banners));
         }).catch(() => {
-            console.log ("轮播图数据传输错误");
+            console.log ('轮播图数据传输错误');
         })
     }
 }
@@ -33,7 +33,7 @@ export const getRecommendList = () => {
             dispatch(changeRecommendList(data.result));
             dispatch (changeEnterLoading (false));// 改变 loading
         }).catch(() => {
-            console.log ("推荐歌单数据传输错误");
+            console.log ('推荐歌单数据传输错误');
         })
     }
 }
