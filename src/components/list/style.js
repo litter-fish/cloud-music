@@ -4,7 +4,7 @@ import style from '../../assets/global-style';
 export const ListWrapper = styled.div`
     max-width: 100%;
     .title {
-        font-weigth: 700;
+        font-weight: 700;
         padding-left: 6px;
         font-size: 14px;
         line-height: 60px;
@@ -29,7 +29,7 @@ export const ListItem = styled.div`
             width: 100%;
             height: 35px;
             border-radius: 3px;
-            background: linear-gradient (hsla (0,0%,43%,.4),hsla (0,0%,100%,0));
+            background: linear-gradient(hsla(0,0%,43%,.4), hsla(0,0%,100%,0));
         }
         position: relative;
         height: 0;
